@@ -1,4 +1,4 @@
-import '~/assets/css/globals.css';
+import '~/assets/css/template/globals.css';
 import Provider from '~/store/provider';
 
 // types
