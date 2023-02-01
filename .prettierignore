@@ -16,9 +16,6 @@ public
 .serverless
 .serverless_nextjs
 
-# custom server
-server/
-
 # sst
 .open-next
 .sst
