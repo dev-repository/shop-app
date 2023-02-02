@@ -49,3 +49,7 @@ scripts/env/.env.production
 # sst
 .open-next
 .sst
+
+# sqlite
+*.sqlite
+*.sqlite-journal

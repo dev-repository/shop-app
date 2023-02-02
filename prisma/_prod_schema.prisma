@@ -6,20 +6,20 @@ generator client {
 }
 
 datasource db {
-  provider          = "sqlite"
+  provider          = "postgresql"
   url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-// enum Role {
-//   USER
-//   ADMIN
-// }
+enum Role {
+  USER
+  ADMIN
+}
 
-// enum Gender {
-//   FEMALE
-//   MALE
-// }
+enum Gender {
+  FEMALE
+  MALE
+}
 
 // 유저 모델
 model User {
@@ -27,11 +27,11 @@ model User {
   nickname  String    @unique // 닉네임
   name      String? // 이름
   brithday  DateTime? // 생일
-  gender    String? // 성별
+  gender    Gender? // 성별
   createdAt DateTime  @default(now()) // 생성일
   updatedAt DateTime  @updatedAt // 업데이트일
   deletedAt DateTime? // 삭제일
-  role      String    @default("USER") // 권한
+  role      Role      @default(USER) // 권한
 
   // 관계
   auth   Auth? @relation(fields: [authId], references: [id])
