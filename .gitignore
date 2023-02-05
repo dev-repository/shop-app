@@ -53,3 +53,6 @@ scripts/env/.env.production
 # sqlite
 *.sqlite
 *.sqlite-journal
+
+# prisma
+prisma/migrations
