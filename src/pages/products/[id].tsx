@@ -1,7 +1,12 @@
 import React from 'react';
 
-const name = () => {
-  return <div>name</div>;
+const Name = () => {
+  return (
+    <div>
+      name
+      <input type="text" name="ddd" id="ddd" />
+    </div>
+  );
 };
 
-export default name;
+export default Name;
