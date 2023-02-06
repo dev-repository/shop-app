@@ -4,7 +4,7 @@ import cn from 'classnames';
 type ReactTag = keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
 
 interface ContainerProps {
-  className?: cn.ArgumentArray;
+  className?: cn.ArgumentArray | cn.Argument;
   children?: React.ReactNode;
   el?: ReactTag;
   clean?: boolean;
