@@ -55,7 +55,7 @@ const Header: React.FC = () => {
           <button
             aria-label="Menu"
             className="menuBtn hidden md:flex lg:hidden flex-col items-center justify-center px-5 2xl:px-7 flex-shrink-0 h-full outline-none focus:outline-none"
-            // onClick={handleMobileMenu}
+          // onClick={handleMobileMenu}
           >
             <span className="menuIcon">
               <span className="bar" />
