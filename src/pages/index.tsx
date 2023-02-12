@@ -50,6 +50,7 @@ export default function Home({
   );
 }
 
+//공동 템플릿
 Home.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
 };
