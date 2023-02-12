@@ -1,4 +1,4 @@
-{
+export const Terms = {
     "terms-one-title": "Purpose",
     "terms-one-content": "<p>Little &amp; Big is committed to protecting your privacy because we are committed to valuing people. Our Privacy Policy below sets out how your personal information is collected, used and protected. The&nbsp;<a href='http://demo'>Demo Country Privacy Principles</a>&nbsp;also apply to us.</p><p>This Privacy Policy describes our policies and procedures on the collection, holding, use and disclosure of your personal information and should be read together with our&nbsp;Terms and Conditions. By providing your personal information you consent to our collection, use and disclosure of that information in accordance with this Privacy Policy.</p>",
     "terms-two-title": "What is Personal Data?",

@@ -3,7 +3,7 @@ import Container from '~/components/ui/container';
 import { termsAndServices } from '~/setting/terms-setting';
 import { Link, Element } from "react-scroll";
 import Layout from '~/components/shared/Layout/Layout';
-// import { useTranslation } from "next-i18next";
+import { Terms } from '~/api/mock/terms';
 
 
 interface HeaderProps {
@@ -16,10 +16,7 @@ function makeTitleToDOMId(title: string) {
 }
 
 const Page = () => {
-    // const { t } = useTranslation("terms");
-    const Terms = () => {
-        console.log(typeof Terms);
-    }
+    console.log(Terms);
     return <>
         {/* 약관제목 및 배경 */}
         <div

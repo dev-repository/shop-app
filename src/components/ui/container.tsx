@@ -6,7 +6,7 @@ interface Props {
     clean?: boolean;
 } //type대신 interface사용(typescript기반)
 
-const Container: React.FC<Props> = ({
+const Container: React.FC<Any> = ({
     children,
     className,
     el = "div",
