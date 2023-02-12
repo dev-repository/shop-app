@@ -3,7 +3,7 @@ import React, { useImperativeHandle, useRef } from 'react';
 
 export interface ButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'className'> {
-  className?: cn.ArgumentArray;
+  className?: cn.ArgumentArray | cn.Argument;
   variant?: 'flat' | 'slim' | 'smoke';
   active?: boolean;
   type?: 'submit' | 'reset' | 'button';
