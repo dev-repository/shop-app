@@ -1,4 +1,5 @@
 import React from 'react';
+import AuthModal from '~/components/shared/Modal/AuthModal';
 import AuthProvider, { type AuthStore } from './useAuthStore';
 
 export interface ClientProps
@@ -14,5 +15,10 @@ export default function Client({ children, ...otherProps }: ClientProps) {
     }),
   };
 
-  return <AuthProvider {...store}>{children}</AuthProvider>;
+  return (
+    <AuthProvider {...store}>
+      {children}
+      <AuthModal />
+    </AuthProvider>
+  );
 }
