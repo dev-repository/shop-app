@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 
-type ModalType = 'NOOP' | 'AUTH';
+type ModalType = 'NOOP' | 'LOGIN' | 'SIGNUP';
 
 interface LayoutPopupState {
   type: ModalType;
@@ -11,6 +11,7 @@ interface LayoutPopupState {
 interface LayoutAction {
   openModal: (type: ModalType) => void;
   closeModal: () => void;
+  changeModal: (type: ModalType) => void;
 }
 
 interface LayoutStore {
@@ -30,6 +31,15 @@ export const useLayoutStore = create<LayoutStore>((set) => ({
         modal: {
           type,
           open: true,
+        },
+      }));
+    },
+    changeModal: (type: ModalType) => {
+      set((state) => ({
+        ...state,
+        modal: {
+          ...state.modal,
+          type,
         },
       }));
     },
