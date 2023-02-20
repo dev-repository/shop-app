@@ -18,7 +18,7 @@ export default function Client({ children, ...otherProps }: ClientProps) {
   return (
     <AuthProvider {...store}>
       {children}
-      {/* <AuthModal /> */}
+      <AuthModal />
     </AuthProvider>
   );
 }
