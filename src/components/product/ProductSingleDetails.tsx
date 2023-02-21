@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useWindowSize } from 'react-use';
 import Carousel from '../shared/Common/Carousel';
 import { SwiperSlide } from 'swiper/react';
@@ -8,6 +8,8 @@ import Link from 'next/link';
 import { ProductAttributes } from './ProductAttributes';
 import ProductMetaReview from './ProductMetaReview';
 import { product as data } from '~/api/mock/product';
+import { getVariations } from '~/utils/getVariations';
+import { isEmpty } from 'lodash';
 
 const productGalleryCarouselResponsive = {
   '768': {
@@ -19,11 +21,28 @@ const productGalleryCarouselResponsive = {
 };
 
 const ProductSingleDetails: React.FC = () => {
+  const variations = getVariations(data?.variations);
+  const [attributes, setAttributes] = useState<{ [key: string]: string }>({});
+
+  const isSelected = !isEmpty(variations)
+    ? !isEmpty(attributes) &&
+      Object.keys(variations).every((variation) =>
+        attributes.hasOwnProperty(variation),
+      )
+    : true;
+
+  function handleAttribute(attribute: any) {
+    setAttributes((prev) => ({
+      ...prev,
+      ...attribute,
+    }));
+  }
+
   const { width } = useWindowSize(0, 0);
 
   // 기능 들어갈 부분
   return (
-    <div className="lg:grid grid-cols-9 gap-x-10 xl:gap-x-14 pt-7 pb-10 lg:pb-14 2xl:pb-20 items-start">
+    <div className="block lg:grid grid-cols-9 gap-x-10 xl:gap-x-14 pt-7 pb-10 lg:pb-14 2xl:pb-20 items-start">
       {width < 1250 ? (
         <Carousel
           pagination={{
@@ -49,7 +68,7 @@ const ProductSingleDetails: React.FC = () => {
           ))}
         </Carousel>
       ) : (
-        <div className="col-span-5 grid grid-cols-2 gap">
+        <div className="col-span-5 grid grid-cols-2 gap-2.5">
           {data?.gallery?.map((item, index: number) => (
             <div
               key={index}
@@ -93,17 +112,17 @@ const ProductSingleDetails: React.FC = () => {
         </div>
 
         <div className="pb-3 border-b border-gray-300">
-          {/* {Object.keys(variations).map((variation) => {
+          {Object.keys(variations).map((variation) => {
             return (
-              // <ProductAttributes
-              //   key={variation}
-              //   title={variation}
-              //   attributes={variations[variation]}
-              //   active={attributes[variation]}
-              //   onClick={handleAttribute}
-              // />
+              <ProductAttributes
+                key={variation}
+                title={variation}
+                attributes={variations[variation]}
+                active={attributes[variation]}
+                onClick={handleAttribute}
+              />
             );
-          })} */}
+          })}
         </div>
         <div className="flex items-center space-s-4 md:pe-32 lg:pe-12 2xl:pe-32 3xl:pe-48 border-b border-gray-300 py-8">
           <Counter
@@ -163,7 +182,7 @@ const ProductSingleDetails: React.FC = () => {
             )}
           </ul>
         </div>
-        {/* <ProductMetaReview data={data} /> */}
+        <ProductMetaReview data={data} />
       </div>
     </div>
   );
