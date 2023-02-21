@@ -43,12 +43,6 @@ export class NotFound extends HttpException {
   }
 }
 
-export class InvalidCsrf extends HttpException {
-  constructor(metadata?: Nullable<Metadata>) {
-    super(400, 'InvalidCsrf', metadata);
-  }
-}
-
 export class CredentialsSignin extends HttpException {
   constructor(metadata?: Nullable<Metadata>) {
     super(401, 'CredentialsSignin', metadata);

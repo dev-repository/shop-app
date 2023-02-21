@@ -15,12 +15,7 @@
     "fix:types": "tsc --noEmit",
     "fix:eslint-fix": "next lint --fix",
     "fix:prettier-fix": "prettier --write '**/*.{js,jsx,md,ts,tsx}'",
-    "test:watch": "jest --watch",
-    "test:ci": "jest --ci",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "e2e:list": "playwright test --reporter=list",
-    "e2e:html": "playwright test --reporter=html",
-    "e2e:report": "playwright show-report",
     "prisma:dev": "prisma migrate dev"
   },
   "keywords": [
@@ -48,6 +43,7 @@
     "cross-env": "^7.0.3",
     "dayjs": "^1.11.7",
     "framer-motion": "^9.0.2",
+    "jsonwebtoken": "^9.0.0",
     "lodash-es": "^4.17.21",
     "next": "^13.1.5",
     "next-seo": "^5.15.0",
@@ -71,6 +67,7 @@
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.9",
     "@types/body-scroll-lock": "^3.1.0",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/lodash-es": "^4.17.6",
     "@types/node": "^18.11.18",
     "@types/qs": "^6.9.7",
