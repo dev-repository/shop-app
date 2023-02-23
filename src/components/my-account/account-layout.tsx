@@ -1,8 +1,11 @@
 import Container from "../ui/container";
 import AccountNav from "./account-nav";
 
+interface Props {
+    children: any;
+}
 
-const AccountLayout: React.FunctionComponent<{}> = ({ children }) => {
+const AccountLayout: React.FunctionComponent<Props> = ({ children }) => {
     return (
         <>
             <Container>
