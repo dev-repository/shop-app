@@ -1,5 +1,5 @@
 import Container from "../ui/container";
-import AccountNav from "./account-nav";
+import AccountNav from "./AccountNav";
 
 interface Props {
     children: any;

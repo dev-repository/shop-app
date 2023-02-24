@@ -1,5 +1,6 @@
 import Layout from '~/components/shared/Layout/Layout';
-import AccountLayout from "~/components/my-account/account-layout";
+import AccountLayout from "~/components/my-account/AccountLayout";
+import OrdersTable from '~/components/my-account/OrderTable';
 
 export default function OrdersTablePage() {
     return <>
@@ -22,7 +23,7 @@ export default function OrdersTablePage() {
         </div>
         {/* 약관제목 및 배경 */}
         <AccountLayout>
-            {/* <OrdersTablePage /> */}
+            <OrdersTable />
         </AccountLayout>
     </>;
 }

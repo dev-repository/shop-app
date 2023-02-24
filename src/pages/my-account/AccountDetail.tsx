@@ -1,4 +1,6 @@
+import AccountLayout from '~/components/my-account/AccountLayout';
 import Layout from '~/components/shared/Layout/Layout';
+import AccountDetails from '~/components/my-account/AccountDetails';
 
 
 export default function AccountDetailsPage() {
@@ -20,7 +22,9 @@ export default function AccountDetailsPage() {
                     </h2>
                 </div>
             </div>
-            <div>account detail</div>
+            <AccountLayout>
+                <AccountDetails />
+            </AccountLayout>
         </>
     )
 }

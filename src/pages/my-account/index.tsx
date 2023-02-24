@@ -1,5 +1,5 @@
 import Layout from '~/components/shared/Layout/Layout';
-import AccountLayout from '~/components/my-account/account-layout';
+import AccountLayout from '~/components/my-account/AccountLayout';
 
 
 export default function AccountPage() {
