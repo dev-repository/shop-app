@@ -1,7 +1,9 @@
+import AccountLayout from '~/components/my-account/AccountLayout';
 import Layout from '~/components/shared/Layout/Layout';
+import AccountDetails from '~/components/my-account/AccountDetails';
 
 
-export default function ChangePasswordPage() {
+export default function AccountDetailsPage() {
     return (
         <>
             <div
@@ -20,11 +22,13 @@ export default function ChangePasswordPage() {
                     </h2>
                 </div>
             </div>
-            <div>패스워드</div>
+            <AccountLayout>
+                <AccountDetails />
+            </AccountLayout>
         </>
     )
-};
+}
 
-ChangePasswordPage.getLayout = function getLayout(page: React.ReactNode) {
+AccountDetailsPage.getLayout = function getLayout(page: React.ReactNode) {
     return <Layout>{page}</Layout>;
 };

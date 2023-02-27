@@ -1,13 +1,38 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+
+// components
 import Button from '~/components/shared/Common/Button';
 import Input from '~/components/shared/Form/Input';
-import PasswordInput from '../shared/Form/PasswordInput';
-import Logo from '../shared/Layout/Logo';
+import PasswordInput from '~/components/shared/Form/PasswordInput';
+import Logo from '~/components/shared/Layout/Logo';
 import { IoClose } from 'react-icons/io5';
+
+// trpc
+import { trpc } from '~/utils/trpc';
+
+// hooks
 import { useApiHookStore } from '~/store/useLayoutStore';
+import { useForm } from 'react-hook-form';
+
+// types
+import type { SubmitHandler } from 'react-hook-form';
+import type { SignupData } from '~/libs/validation/auth';
 
 const SignupForm = () => {
+  const mutation = trpc.auth.signup.useMutation();
+
   const { closeModal, changeModal } = useApiHookStore();
+
+  const { register, handleSubmit, formState } = useForm<SignupData>();
+
+  const onSubmit: SubmitHandler<SignupData> = useCallback(
+    async (input) => {
+      const resp = await mutation.mutateAsync(input);
+      console.log(resp);
+    },
+    [mutation],
+  );
+
   return (
     <div className="overflow-hidden bg-white mx-auto rounded-lg w-full sm:w-96 md:w-450px border border-gray-300 py-5 px-5 sm:px-8">
       <button
@@ -26,30 +51,41 @@ const SignupForm = () => {
           By signing up, you agree to our terms & policy
         </p>
       </div>
-      <form className="flex flex-col justify-center" noValidate>
+      <form
+        className="flex flex-col justify-center"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="flex flex-col space-y-3.5">
           <Input
             label="Name"
             type="text"
             variant="solid"
             width="w-full"
-            error={undefined}
-            name="name"
+            error={formState.errors?.username?.message}
+            {...register('username')}
           />
           <Input
             label="Email"
             type="email"
             variant="solid"
             width="w-full"
-            error={undefined}
-            name="email"
+            error={formState.errors?.email?.message}
+            {...register('email')}
           />
-          <PasswordInput name="password" label="Password" error={undefined} />
+          <PasswordInput
+            label="Password"
+            error={formState.errors?.password?.message}
+            {...register('password')}
+          />
+          <PasswordInput
+            label="passwordConfirm"
+            error={formState.errors?.passwordConfirm?.message}
+            {...register('passwordConfirm')}
+          />
           <div className="relative">
             <Button
               type="submit"
-              loading={false}
-              disabled={false}
+              loading={mutation.isLoading}
               className="h-11 md:h-12 w-full mt-1.5"
             >
               Register
