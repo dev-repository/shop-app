@@ -12,6 +12,10 @@ export const schema = {
       message: 'Passwords do not match',
       path: ['passwordConfirm'],
     }),
+  signin: z.object({
+    email: z.string().email(),
+    password: z.string().min(8),
+  }),
 };
 
 export type SignupData = z.infer<typeof schema.signup>;

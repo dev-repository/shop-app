@@ -2,7 +2,7 @@ import { schema } from '~/libs/validation/auth';
 import { publicProcedure, router } from '~/server/trpc';
 import { generateTokens } from '~/server/token';
 import { HttpException } from '~/server/errors/exceptions';
-import { generateHash, generateSalt } from '~/utils/password';
+import { generateHash, generateSalt, secureCompare } from '~/utils/password';
 
 export const authRouter = router({
   signup: publicProcedure
@@ -39,6 +39,38 @@ export const authRouter = router({
 
         const tokens = await generateTokens(user);
 
+        return {
+          userId: user.id,
+          tokens,
+        };
+      } catch (error) {
+        throw error;
+      }
+    }),
+  signin: publicProcedure
+    .input(schema.signin)
+    .mutation(async ({ ctx, input }) => {
+      try {
+        const user = await ctx.prisma.user.findUnique({
+          where: {
+            email: input.email,
+          },
+        });
+
+        if (!user) {
+          throw new HttpException(400, 'InvalidCredentials');
+        }
+
+        if (
+          !secureCompare(
+            user.passwordHash,
+            generateHash(input.password, user.salt),
+          )
+        ) {
+          throw new HttpException(400, 'InvalidCredentials');
+        }
+
+        const tokens = await generateTokens(user);
         return {
           userId: user.id,
           tokens,
