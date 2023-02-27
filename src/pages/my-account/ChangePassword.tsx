@@ -1,4 +1,6 @@
+import AccountLayout from '~/components/my-account/AccountLayout';
 import Layout from '~/components/shared/Layout/Layout';
+import ChangePassword from '~/components/my-account/ChangePassword';
 
 
 export default function ChangePasswordPage() {
@@ -20,7 +22,9 @@ export default function ChangePasswordPage() {
                     </h2>
                 </div>
             </div>
-            <div>패스워드</div>
+            <AccountLayout>
+                <ChangePassword />
+            </AccountLayout>
         </>
     )
 };
