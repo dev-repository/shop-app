@@ -8,9 +8,7 @@ const CartButton = () => {
       aria-label="cart-button"
     >
       <CartIcon />
-      <span className="cart-counter-badge flex items-center justify-center bg-heading text-white absolute -top-2.5 xl:-top-3 -end-2.5 xl:-end-3 rounded-full font-bold">
-        1
-      </span>
+      {/* <span className="cart-counter-badge flex items-center justify-center bg-heading text-white absolute -top-2.5 xl:-top-3 -end-2.5 xl:-end-3 rounded-full font-bold"></span> */}
     </button>
   );
 };

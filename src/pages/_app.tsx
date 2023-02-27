@@ -9,7 +9,9 @@ import Provider from '~/store/provider';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 
-import { Open_Sans, Satisfy } from '@next/font/google';
+import { Open_Sans } from '@next/font/google';
+import { trpc } from '~/utils/trpc';
+import classNames from 'classnames';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -27,24 +29,16 @@ const openSans = Open_Sans({
   weight: ['400', '600', '700'],
 });
 
-const satisfy = Satisfy({
-  weight: ['400'],
-  subsets: ['latin'],
-});
-
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <>
+    <div className={classNames(openSans.className)}>
       <Provider pageProps={pageProps} isLoggedIn={false} currentProfile={null}>
         {getLayout(<Component {...pageProps} />)}
       </Provider>
-      <style jsx global>{`
-        html {
-          font-family: ${openSans.style.fontFamily}, ${satisfy.style.fontFamily};
-        }
-      `}</style>
-    </>
+    </div>
   );
 }
+
+export default trpc.withTRPC(App);

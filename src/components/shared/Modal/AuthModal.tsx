@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import LoginForm from '~/components/auth/LoginForm';
 import SignupForm from '~/components/auth/SignupForm';
 import Modal from '~/components/shared/Modal/Modal';
