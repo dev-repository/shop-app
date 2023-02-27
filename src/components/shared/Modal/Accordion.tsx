@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { motion, AnimatePresence } from 'framer-motion';
-import { heightCollapse } from '@utils/motion/height-collapse';
-import { useTranslation } from 'next-i18next';
+import { heightCollapse } from '~/utils/heightCollapse';
 
 type CollapseProps = {
   i: number;
@@ -29,7 +28,6 @@ export const Collapse: React.FC<CollapseProps> = ({
 }) => {
   const isOpen = i === expanded;
 
-  const { t } = useTranslation(translatorNS);
   return (
     <div
       className={cn({
@@ -57,7 +55,7 @@ export const Collapse: React.FC<CollapseProps> = ({
             },
           )}
         >
-          {titleKey ? t(titleKey) : title}
+          {titleKey ? titleKey : title}
         </h2>
         <div className="flex-shrink-0 relative w-4 h-4 flex justify-center items-center">
           <div className="w-full h-0.5 bg-heading rounded-sm" />
@@ -83,7 +81,7 @@ export const Collapse: React.FC<CollapseProps> = ({
                   variant === 'gray',
               })}
             >
-              {contentKey ? t(contentKey) : content}
+              {contentKey ? contentKey : content}
             </div>
           </motion.div>
         )}
