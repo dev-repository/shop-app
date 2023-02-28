@@ -28,15 +28,14 @@ const AccountDetails: React.FC = () => {
                 <div className="flex flex-col space-y-4 sm:space-y-5">
                     <div className="flex flex-col sm:flex-row sm:space-s-3 space-y-4 sm:space-y-0">
                         <Input
-                            labelKey="forms:label-email-star"
+                            labelKey="First Name *"
                             variant="solid"
                             className="w-full sm:w-1/2"
-                            value={"First Name"}
                         />
                         <Input
+                            labelKey="Last Name *"
                             variant="solid"
                             className="w-full sm:w-1/2"
-                            value={"Last Name"}
                         />
                     </div>
                     <Input

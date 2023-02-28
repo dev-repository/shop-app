@@ -4,19 +4,19 @@ import { ROUTES } from "~/utils/routes";
 const accountMenu = [
     {
         slug: ROUTES.ACCOUNT,
-        name: "text-dashboard",
+        name: "Dashboard",
     },
     {
         slug: ROUTES.ORDERS,
-        name: "text-orders",
+        name: "Orders",
     },
     {
         slug: ROUTES.ACCOUNT_DETAILS,
-        name: "text-account-details",
+        name: "Account-details",
     },
     {
         slug: ROUTES.CHANGE_PASSWORD,
-        name: "text-change-password",
+        name: "Change-password",
     },
 ]
 
