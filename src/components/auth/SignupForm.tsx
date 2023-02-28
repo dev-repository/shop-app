@@ -26,10 +26,7 @@ const SignupForm = () => {
   const { register, handleSubmit, formState } = useForm<SignupData>();
 
   const onSubmit: SubmitHandler<SignupData> = useCallback(
-    async (input) => {
-      const resp = await mutation.mutateAsync(input);
-      console.log(resp);
-    },
+    (input) => mutation.mutate(input),
     [mutation],
   );
 

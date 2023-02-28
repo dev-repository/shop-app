@@ -4,6 +4,7 @@ import '~/assets/css/custom-plugins.css';
 import '~/assets/css/tailwind.css';
 
 import Provider from '~/store/provider';
+import { SessionProvider } from 'next-auth/react';
 
 // types
 import type { NextPage } from 'next';
@@ -29,14 +30,23 @@ const openSans = Open_Sans({
   weight: ['400', '600', '700'],
 });
 
-function App({ Component, pageProps }: AppPropsWithLayout) {
+function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <div className={classNames(openSans.className)}>
-      <Provider pageProps={pageProps} isLoggedIn={false} currentProfile={null}>
-        {getLayout(<Component {...pageProps} />)}
-      </Provider>
+      <SessionProvider session={session}>
+        <Provider
+          pageProps={pageProps}
+          isLoggedIn={false}
+          currentProfile={null}
+        >
+          {getLayout(<Component {...pageProps} />)}
+        </Provider>
+      </SessionProvider>
     </div>
   );
 }
