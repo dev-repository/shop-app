@@ -1,6 +1,5 @@
 import { schema } from '~/libs/validation/auth';
 import { publicProcedure, router } from '~/server/trpc';
-import { generateTokens } from '~/server/token';
 import { HttpException } from '~/server/errors/exceptions';
 import { generateHash, generateSalt, secureCompare } from '~/server/password';
 

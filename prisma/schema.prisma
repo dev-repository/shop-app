@@ -12,24 +12,25 @@ datasource db {
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
   salt         String
   passwordHash String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
   profile      Profile?
+  products     Product[]
 
   @@map("users")
 }
 
 model Profile {
-  id       Int       @id @default(autoincrement())
+  id       Int     @id @default(autoincrement())
   name     String? // 이름
-  brithday DateTime? // 생일
+  birthday String? // 생일
   gender   String? // 성별
-  userId   Int       @unique
-  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId   Int     @unique
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("profiles")
 }
@@ -37,32 +38,39 @@ model Profile {
 model Product {
   id          Int        @id @default(autoincrement())
   name        String     @unique
-  description String?
+  description String
   price       Int
-  salePrice   Int?
-  totalSales  Int        @default(1)
+  salePrice   Int?       @default(0)
+  totalSales  Int?       @default(1)
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   images      Image[]
   categories  Category[]
 
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@map("products")
 }
 
 model Image {
-  id        Int     @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   url       String
   productId Int
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("images")
 }
 
 model Category {
-  id        Int     @id @default(autoincrement())
-  name      String  @unique
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
   productId Int
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("categories")
 }
