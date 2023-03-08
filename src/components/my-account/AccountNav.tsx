@@ -18,6 +18,10 @@ const accountMenu = [
         slug: ROUTES.CHANGE_PASSWORD,
         name: "Change-password",
     },
+    {
+        slug: ROUTES.PRODUCT_REGISTER,
+        name: "Product-Register",
+    }
 ]
 
 export default function AccountNav() {
@@ -33,7 +37,6 @@ export default function AccountNav() {
             {accountMenu.map((item) => {
                 const menuPathname = item.slug.split("/").slice(2, 3);
                 const menuPath = `/${menuPathname[0]}`;
-
                 return (
                     <Link key={item.slug} href={item.slug}
                         className={
@@ -42,9 +45,7 @@ export default function AccountNav() {
                                 : 'flex items-center cursor-pointer text-sm lg:text-base text-heading font-normal py-3.5 px-4 lg:px-5 rounded mb-2'
                         }
                     >
-                        {/* <a className="flex items-center cursor-pointer text-sm lg:text-base text-heading font-normal py-3.5 px-4 lg:px-5 rounded mb-2"> */}
                         < span className="ps-2" > {(`${item.name}`)}</span>
-                        {/* </a> */}
                     </Link >
                 )
             })}

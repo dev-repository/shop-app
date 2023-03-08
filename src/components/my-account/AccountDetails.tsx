@@ -39,17 +39,20 @@ const AccountDetails: React.FC = () => {
                         />
                     </div>
                     <Input
-                        className="w-full sm:w-1/2"
-                        value={"Display Name"}
+                        labelKey="Display Name *"
+                        variant="solid"
+                        className="w-full"
                     />
                     <div className="flex flex-col sm:flex-row sm:space-s-3 space-y-4 sm:space-y-0">
                         <Input
+                            labelKey="Phone/Mobile *"
+                            variant="solid"
                             className="w-full sm:w-1/2"
-                            value={"PhoneNumber"}
                         />
                         <Input
+                            labelKey="Email *"
+                            variant="solid"
                             className="w-full sm:w-1/2"
-                            value={"email"}
                         />
                     </div>
                     <div className="relative flex flex-col">
