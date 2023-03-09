@@ -1,20 +1,34 @@
 // import ProductRegister from "~/pages/my-account/ProductRegister";
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 
 
 const Register = ({ }) => {
-    const [name, setName] = useState("");
-    const contentRef = useRef();
-    const onChange = (e) => {
-        setName(e.target.value);
+    const [name, setName] = useState({
+        id: "",
+        product: "",
+        price: ""
+    });
+    const { id, product, price } = name;
+
+    // const contentRef = useRef();
+    // const onChange = (e) => {
+    //     setName({
+    //         ...name,
+    //         [e.target.value]: e.target.value
+    //     })
+    // }
+
+    function onChange(e) {
+        const { value, name } = e.target;
+        setName({
+            ...name,
+            [name]: value,
+        })
     }
 
     const buttonSubmit = () => {
-        if (name.length < 2) {
-            contentRef.current.focus();
-            return;
-        }
+        console.log("dfdf");
     }
     return (
         <>
@@ -25,16 +39,23 @@ const Register = ({ }) => {
                 <div>
                     <div>
                         <input
-                            value={name}
+                            name='id'
+                            value={name.id}
                             onChange={onChange}
-                            ref={contentRef}
                         />
                     </div>
                     <div>
-                        <textarea
-                            value={name}
+                        <input
+                            name='product'
+                            value={name.product}
                             onChange={onChange}
-                            ref={contentRef}
+                        />
+                    </div>
+
+                    <div>
+                        <input name="price"
+                            value={name.price}
+                            onChange={onChange}
                         />
                     </div>
                     <button onClick={buttonSubmit}>
