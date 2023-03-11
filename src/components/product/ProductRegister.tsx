@@ -1,34 +1,52 @@
 // import ProductRegister from "~/pages/my-account/ProductRegister";
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+// import { useNavigate } from "react-router-dom";
 
 
 
-const Register = ({ }) => {
+const Register = ({ onCreate }) => {
+
+    const explainInput = useRef();
+    const priceInput = useRef();
+
     const [name, setName] = useState({
-        id: "",
         product: "",
+        explain: "",
         price: ""
     });
-    const { id, product, price } = name;
 
-    // const contentRef = useRef();
-    // const onChange = (e) => {
-    //     setName({
-    //         ...name,
-    //         [e.target.value]: e.target.value
-    //     })
+    // navigate함수
+
+    // const navigate = useNavigate();
+    // const navigatePage = () => {
+    //     navigate("/ProductList");
     // }
 
-    function onChange(e) {
-        const { value, name } = e.target;
+
+    const handleChangeState = (e) => {
         setName({
             ...name,
-            [name]: value,
-        })
+            [e.target.name]: e.target.value,
+        });
     }
 
     const buttonSubmit = () => {
-        console.log("dfdf");
+        if (name.explain.length < 3) {
+            explainInput.current.focus();
+            return;
+        }
+        if (name.price.length < 5) {
+            priceInput.current.focus();
+            return;
+        }
+        onCreate(name.product, name.explain, name.price)
+        console.log(name);
+        alert("저장성공");
+        setName({
+            product: "",
+            explain: "",
+            price: "",
+        })
     }
     return (
         <>
@@ -38,28 +56,43 @@ const Register = ({ }) => {
                 </h2>
                 <div>
                     <div>
-                        <input
-                            name='id'
-                            value={name.id}
-                            onChange={onChange}
-                        />
-                    </div>
-                    <div>
-                        <input
+                        <textarea
+                            className='py-2 px-4 md:px-5 w-full appearance-none transition duration-150 ease-in-out border text-input text-xs lg:text-sm font-body rounded-md placeholder-body min-h-12 transition duration-200 ease-in-out bg-white border-gray-300 focus:outline-none focus:border-heading h-11 md:h-12'
                             name='product'
                             value={name.product}
-                            onChange={onChange}
+                            onChange={handleChangeState}
                         />
                     </div>
-
                     <div>
-                        <input name="price"
-                            value={name.price}
-                            onChange={onChange}
+                        <input
+                            className='py-2 px-4 md:px-5 w-full appearance-none transition duration-150 ease-in-out border text-input text-xs lg:text-sm font-body rounded-md placeholder-body min-h-12 transition duration-200 ease-in-out bg-white border-gray-300 focus:outline-none focus:border-heading h-11 md:h-12'
+                            name='explain'
+                            //focus
+                            ref={explainInput}
+                            value={name.explain}
+                            onChange={handleChangeState}
                         />
                     </div>
-                    <button onClick={buttonSubmit}>
+                    <div>
+                        <input
+                            className='py-2 px-4 md:px-5 w-full appearance-none transition duration-150 ease-in-out border text-input text-xs lg:text-sm font-body rounded-md placeholder-body min-h-12 transition duration-200 ease-in-out bg-white border-gray-300 focus:outline-none focus:border-heading h-11 md:h-12'
+                            name="price"
+                            ref={priceInput}
+                            value={name.price}
+                            onChange={handleChangeState}
+                        />
+                    </div>
+                    <button
+                        type='submit'
+                        className='text-[13px] md:text-sm leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-body text-center justify-center border-0 border-transparent rounded-md placeholder-white focus-visible:outline-none focus:outline-none bg-heading text-white px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-gray-600 hover:shadow-cart h-12 mt-3 w-full sm:w-32'
+                        onClick={buttonSubmit}>
                         등록
+                    </button>
+                    <button
+                        type='button'
+                        className='text-[13px] md:text-sm leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold font-body text-center justify-center border-0 border-transparent rounded-md placeholder-white focus-visible:outline-none focus:outline-none bg-heading text-white px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-gray-600 hover:shadow-cart h-12 mt-3 w-full sm:w-32'
+                        onClick={buttonSubmit}>
+                        리스트
                     </button>
                 </div>
             </div>

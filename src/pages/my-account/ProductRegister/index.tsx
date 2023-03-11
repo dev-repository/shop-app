@@ -1,8 +1,25 @@
 import Layout from "~/components/shared/Layout/Layout";
 import AccountLayout from "~/components/my-account/AccountLayout";
 import Register from "~/components/product/ProductRegister";
+import { useState, useRef } from "react";
 
 export default function RegisterPage() {
+
+    const [data, setData] = useState([]);
+
+    const dataId = useRef(0);
+
+    const onCreate = (product, explain, price) => {
+        const newItem = {
+            product,
+            explain,
+            price,
+            id: dataId.current,
+        };
+        dataId.current += 1;
+        setData([newItem, ...data]);
+    }
+
     return <>
         {/* 약관제목 및 배경 */}
         <div
@@ -23,7 +40,7 @@ export default function RegisterPage() {
         </div>
         {/* 약관제목 및 배경 */}
         <AccountLayout>
-            <Register />
+            <Register onCreate={onCreate} />
         </AccountLayout>
     </>;
 }
