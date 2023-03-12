@@ -1,20 +1,13 @@
-const ChangePassword: React.FC = () => {
-    // const { mutate: changePassword, isLoading } = useChangePasswordMutation();
+import PasswordInput from "../shared/Form/PasswordInput";
+import Button from "../shared/Common/Button";
 
-    // const {
-    // 	register,
-    // 	handleSubmit,
-    // 	formState: { errors },
-    // } = useForm<ChangePasswordInputType>({
-    // 	defaultValues,
-    // });
-    // function onSubmit(input: ChangePasswordInputType) {
-    // 	changePassword(input);
-    // }
+
+const ChangePassword: React.FC = () => {
+
     return (
         <>
             <h2 className="text-lg md:text-xl xl:text-2xl font-bold text-heading mb-6 xl:mb-8">
-                {("common:text-change-password")}
+                {("Change Password")}
             </h2>
             <div
                 className={`w-full flex  h-full lg:w-8/12 flex-col`}
@@ -23,10 +16,23 @@ const ChangePassword: React.FC = () => {
                     className="w-full mx-auto flex flex-col justify-center "
                 >
                     <div className="flex flex-col space-y-3">
+                        <PasswordInput
+                            label="Old Password"
 
+                            className="mb-4"
+                        />
+                        <PasswordInput
+                            label="New Password"
 
+                            className="mb-4"
+                        />
                         <div className="relative">
-
+                            <Button
+                                type="submit"
+                                className="h-13 mt-3"
+                            >
+                                {("Change-password")}
+                            </Button>
                         </div>
                     </div>
                 </form>

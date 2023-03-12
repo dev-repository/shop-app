@@ -55,6 +55,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.2",
     "react-icons": "^4.7.1",
+    "react-router-dom": "^6.8.2",
     "react-scroll": "^1.8.9",
     "react-sticky-box": "^2.0.0",
     "react-use": "^17.4.0",
