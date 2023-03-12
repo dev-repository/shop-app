@@ -9,6 +9,7 @@ import ProductsFeatured from '~/components/shared/Layout/ProductsFeatured';
 import BannerCard from '~/components/shared/Common/BannerCard';
 import ProductsBlock from '~/components/shared/Layout/ProductsBlock';
 import BrandGridBlock from '~/components/shared/Layout/BrandGridBlock';
+import { useSession } from 'next-auth/react';
 
 export const getServerSideProps = async () => {
   return {
@@ -21,6 +22,8 @@ export const getServerSideProps = async () => {
 export default function Home({
   banners,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const session = useSession();
+  console.log(session);
   return (
     <Container>
       <HeroSlider data={banners} buttonGroupClassName="hidden" />
