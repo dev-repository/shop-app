@@ -42,6 +42,7 @@ const Register = ({ onCreate }) => {
         onCreate(name.product, name.explain, name.price)
         console.log(name);
         alert("저장성공");
+        s
         setName({
             product: "",
             explain: "",
