@@ -4,6 +4,7 @@ import StickyBox from 'react-sticky-box';
 import Layout from '~/components/shared/Layout/Layout';
 import Container from '~/components/ui/container';
 import { BreadcrumbItems } from '~/components/search/Breadcrumb';
+import SearchTopBar from '~/components/search/TopBar';
 
 export default function Shop() {
   return (
@@ -23,9 +24,16 @@ export default function Shop() {
                   </Link>
                 </BreadcrumbItems>
               </div>
+              {/* ShopFilters */}
             </StickyBox>
           </div>
+
+          <div className="w-full lg:-ms-9">
+            <SearchTopBar />
+            {/* ProductGrid */}
+          </div>
         </div>
+        {/* Subscription */}
       </Container>
     </>
   );
