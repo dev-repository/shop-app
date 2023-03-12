@@ -18,4 +18,6 @@ export const ROUTES = {
     COLLECTIONS: "/collections",
     CATEGORY: "/category",
     ORDER: "/order",
+    PRODUCT_REGISTER: "/my-account/ProductRegister",
+    PRODUCT_LIST: "/my-account/ProductRegister/ProductList"
 };
