@@ -4,20 +4,24 @@ import { ROUTES } from "~/utils/routes";
 const accountMenu = [
     {
         slug: ROUTES.ACCOUNT,
-        name: "text-dashboard",
+        name: "Dashboard",
     },
     {
         slug: ROUTES.ORDERS,
-        name: "text-orders",
+        name: "Orders",
     },
     {
         slug: ROUTES.ACCOUNT_DETAILS,
-        name: "text-account-details",
+        name: "Account-details",
     },
     {
         slug: ROUTES.CHANGE_PASSWORD,
-        name: "text-change-password",
+        name: "Change-password",
     },
+    {
+        slug: ROUTES.PRODUCT_REGISTER,
+        name: "Product-Register",
+    }
 ]
 
 export default function AccountNav() {
@@ -33,15 +37,18 @@ export default function AccountNav() {
             {accountMenu.map((item) => {
                 const menuPathname = item.slug.split("/").slice(2, 3);
                 const menuPath = `/${menuPathname[0]}`;
-
                 return (
-                    <Link key={item.slug} href={item.slug}>
-                        {/* <a className="flex items-center cursor-pointer text-sm lg:text-base text-heading font-normal py-3.5 px-4 lg:px-5 rounded mb-2"> */}
-                        <span className="ps-2">{(`${item.name}`)}</span>
-                        {/* </a> */}
-                    </Link>
+                    <Link key={item.slug} href={item.slug}
+                        className={
+                            mainPath === menuPath
+                                ? "bg-gray-100 font-semibold flex items-center cursor-pointer text-sm lg:text-base text-heading py-3.5 px-4 lg:px-5 rounded mb-2 "
+                                : 'flex items-center cursor-pointer text-sm lg:text-base text-heading font-normal py-3.5 px-4 lg:px-5 rounded mb-2'
+                        }
+                    >
+                        < span className="ps-2" > {(`${item.name}`)}</span>
+                    </Link >
                 )
             })}
-        </nav>
+        </nav >
     );
 }

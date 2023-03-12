@@ -1,7 +1,7 @@
 import Text from '~/components/shared/Common/Text';
 import FilterIcon from '~/components/shared/Icon/FilterIcon';
 import ListBox from '~/components/ui/ListBox';
-import { Drawer } from '~/components/shared/Common/drawer/drawer';
+import Drawer from 'rc-drawer';
 import { getDirection } from '~/utils/getDirection';
 import { useRouter } from 'next/router';
 
@@ -13,7 +13,7 @@ const SearchTopBar = () => {
   return (
     <div className="flex justify-between items-center mb-7">
       <Text variant="pageHeading" className="hidden lg:inline-flex pb-1">
-        Casual Wear
+        평상복
       </Text>
       <button
         type="button"
@@ -29,11 +29,11 @@ const SearchTopBar = () => {
         </div>
         <ListBox
           options={[
-            { name: 'text-sorting-options', value: 'options' },
-            { name: 'text-newest', value: 'newest' },
-            { name: 'text-popularity', value: 'popularity' },
-            { name: 'text-price-low-high', value: 'low-high' },
-            { name: 'text-price-high-low', value: 'high-low' },
+            { name: '옵션', value: 'options' },
+            { name: 'newest', value: 'newest' },
+            { name: 'popularity', value: 'popularity' },
+            { name: 'low-high', value: 'low-high' },
+            { name: 'high-low', value: 'high-low' },
           ]}
         />
       </div>

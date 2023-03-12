@@ -1,5 +1,5 @@
 import { useWindowSize } from "react-use";
-import Link from "../ui/link";
+import Link from "next/link";
 
 const OrdersTable: React.FC = () => {
 
@@ -34,7 +34,12 @@ const OrdersTable: React.FC = () => {
                         <tbody className="text-sm lg:text-base">
                             <tr className="border-b border-gray-300 last:border-b-0">
                                 <td className="px-4 py-5 text-start">
-
+                                    <Link
+                                        href="/my-account/orders/3203"
+                                        className="underline hover:no-underline text-body"
+                                    >
+                                        #3203
+                                    </Link>
                                 </td>
                                 <td className="text-start lg:text-center px-4 py-5 text-heading">
                                     March 18, 2021
@@ -46,12 +51,22 @@ const OrdersTable: React.FC = () => {
                                     $16,950.00 for 93 items
                                 </td>
                                 <td className="text-end px-4 py-5 text-heading">
-
+                                    <Link
+                                        href="/my-account/orders/3203"
+                                        className="text-sm leading-4 bg-heading text-white px-4 py-2.5 inline-block rounded-md hover:text-white hover:bg-gray-600"
+                                    >
+                                        {("view")}
+                                    </Link>
                                 </td>
                             </tr>
                             <tr className="border-b border-gray-300 last:border-b-0">
                                 <td className="px-4 py-5 text-start">
-
+                                    <Link
+                                        href="/my-account/orders/3203"
+                                        className="underline hover:no-underline text-body"
+                                    >
+                                        #3204
+                                    </Link>
                                 </td>
                                 <td className="text-start lg:text-center px-4 py-5 text-heading">
                                     March 18, 2021
@@ -63,7 +78,12 @@ const OrdersTable: React.FC = () => {
                                     $16,950.00 for 93 items
                                 </td>
                                 <td className="text-end px-4 py-5 text-heading">
-
+                                    <Link
+                                        href="/my-account/orders/3203"
+                                        className="text-sm leading-4 bg-heading text-white px-4 py-2.5 inline-block rounded-md hover:text-white hover:bg-gray-600"
+                                    >
+                                        {("view")}
+                                    </Link>
                                 </td>
                             </tr>
                         </tbody>

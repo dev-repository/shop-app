@@ -19,3 +19,5 @@ export const schema = {
 };
 
 export type SignupData = z.infer<typeof schema.signup>;
+
+export type SigninData = z.infer<typeof schema.signin>;

@@ -1,13 +1,45 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import Button from '~/components/shared/Common/Button';
 import Input from '~/components/shared/Form/Input';
 import PasswordInput from '../shared/Form/PasswordInput';
 import Logo from '../shared/Layout/Logo';
 import { IoClose } from 'react-icons/io5';
+
 import { useApiHookStore } from '~/store/useLayoutStore';
+import { useForm } from 'react-hook-form';
+import { signIn } from 'next-auth/react';
+
+import type { SigninData } from '~/libs/validation/auth';
+import type { SubmitHandler } from 'react-hook-form';
 
 const LoginForm = () => {
   const { closeModal, changeModal } = useApiHookStore();
+
+  const [loading, setLoading] = useState(false);
+  const { register, handleSubmit, formState } = useForm<SigninData>();
+
+  const onSubmit: SubmitHandler<SigninData> = useCallback(
+    async (input) => {
+      try {
+        setLoading(true);
+        const resp = await signIn('credentials', {
+          ...input,
+          redirect: false,
+        });
+
+        if (resp) {
+          if (!resp.error && resp?.ok) {
+            closeModal();
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [closeModal],
+  );
 
   return (
     <div className="overflow-hidden bg-white mx-auto rounded-lg w-full sm:w-96 md:w-450px border border-gray-300 py-5 px-5 sm:px-8">
@@ -27,17 +59,24 @@ const LoginForm = () => {
           Login with your email & password
         </p>
       </div>
-      <form className="flex flex-col justify-center" noValidate>
+      <form
+        className="flex flex-col justify-center"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="flex flex-col space-y-3.5">
           <Input
             label="Email"
             type="email"
             variant="solid"
             width="w-full"
-            error={undefined}
-            name="email"
+            error={formState.errors?.email?.message}
+            {...register('email')}
           />
-          <PasswordInput name="password" label="Password" error={undefined} />
+          <PasswordInput
+            label="Password"
+            error={formState.errors?.password?.message}
+            {...register('password')}
+          />
           <div className="flex items-center justify-center">
             <div className="flex items-center flex-shrink-0">
               <label className="switch relative inline-block w-10 cursor-pointer">
@@ -67,8 +106,8 @@ const LoginForm = () => {
           <div className="relative">
             <Button
               type="submit"
-              loading={false}
-              disabled={false}
+              loading={loading}
+              disabled={loading}
               className="h-11 md:h-12 w-full mt-1.5"
             >
               Login
