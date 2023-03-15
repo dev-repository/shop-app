@@ -7,8 +7,8 @@ export const schema = {
     price: z.number().min(0),
     salePrice: z.number().min(0).optional(),
     totalSales: z.number().min(1).max(100).optional(),
-    images: z.array(z.string()).length(1),
-    categories: z.array(z.string()).length(1),
+    images: z.array(z.string()),
+    categories: z.array(z.string()),
   }),
   update: z.object({
     id: z.number(),
@@ -17,8 +17,8 @@ export const schema = {
     price: z.number().min(0),
     salePrice: z.number().min(0).optional(),
     totalSales: z.number().min(1).max(100).optional(),
-    images: z.array(z.string()).length(1),
-    categories: z.array(z.string()).length(1),
+    images: z.array(z.string()),
+    categories: z.array(z.string()),
   }),
   byId: z.object({
     id: z.number(),

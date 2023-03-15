@@ -116,7 +116,7 @@ export const authOptions: NextAuthOptions = {
             profile: {
               select: {
                 name: true,
-                brithday: true,
+                birthday: true,
                 gender: true,
               },
             },
